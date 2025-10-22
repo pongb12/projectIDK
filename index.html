@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WeatherView Pro - Dự báo thời tiết</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="app-title">
+        <h1>🌦️ WeatherView Pro</h1>
+        <button class="theme-toggle" id="themeToggle">🌙</button>
+      </div>
+      <div class="location-controls">
+        <button id="currentLocationBtn" class="location-btn">
+          <i class="wi wi-compass"></i> Vị trí hiện tại
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <div id="loading" class="loading-container">
+        <div class="weather-loader">
+          <div class="loader-circle"></div>
+          <div class="loader-text">Đang tải dữ liệu thời tiết</div>
+        </div>
+      </div>
+
+      <div id="weatherContainer" class="weather-container hidden">
+        <div class="current-weather">
+          <div class="location-info">
+            <h2 id="locationName">Vị trí hiện tại</h2>
+            <p id="currentDateTime" class="date-time"></p>
+          </div>
+          
+          <div class="weather-main">
+            <div class="temperature-section">
+              <i id="weatherIcon" class="wi wi-day-sunny weather-icon"></i>
+              <div class="temperature" id="currentTemp">--°C</div>
+            </div>
+            <div class="weather-details">
+              <p id="weatherDescription" class="description">Đang tải...</p>
+              <div class="min-max-temp">
+                <span>Cao: <span id="maxTemp">--°</span></span>
+                <span>Thấp: <span id="minTemp">--°</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="detailed-info">
+          <div class="info-grid">
+            <div class="info-card">
+              <i class="wi wi-humidity"></i>
+              <div class="info-content">
+                <div class="info-label">Độ ẩm</div>
+                <div class="info-value" id="humidityValue">--%</div>
+              </div>
+            </div>
+            <div class="info-card">
+              <i class="wi wi-strong-wind"></i>
+              <div class="info-content">
+                <div class="info-label">Gió</div>
+                <div class="info-value" id="windValue">-- km/h</div>
+              </div>
+            </div>
+            <div class="info-card">
+              <i class="wi wi-raindrop"></i>
+              <div class="info-content">
+                <div class="info-label">Khả năng mưa</div>
+                <div class="info-value" id="precipitationValue">--%</div>
+              </div>
+            </div>
+            <div class="info-card">
+              <i class="wi wi-barometer"></i>
+              <div class="info-content">
+                <div class="info-label">Áp suất</div>
+                <div class="info-value" id="pressureValue">-- hPa</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hourly-forecast">
+          <h3>Dự báo theo giờ</h3>
+          <div class="hourly-scroll" id="hourlyForecast">
+          </div>
+        </div>
+
+        <div class="daily-forecast">
+          <h3>Dự báo 7 ngày</h3>
+          <div class="daily-list" id="dailyForecast">
+          </div>
+        </div>
+
+        <div class="weather-map">
+          <h3>Bản đồ thời tiết</h3>
+          <div id="mapContainer" class="map-container">
+            <div id="weatherMap"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="errorContainer" class="error-container hidden">
+        <div class="error-content">
+          <i class="wi wi-day-cloudy-high error-icon"></i>
+          <h3>Không thể tải dữ liệu</h3>
+          <p id="errorMessage">Vui lòng thử lại sau</p>
+          <button id="retryBtn" class="retry-btn">Thử lại</button>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>🌍 Dữ liệu từ Open-Meteo | Made with ❤️</p>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
