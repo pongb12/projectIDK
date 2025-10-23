@@ -88,7 +88,9 @@ header h1 {
 .location-controls {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
 }
 
 .location-btn {
@@ -110,6 +112,15 @@ header h1 {
   transform: translateY(-2px);
   background: #e67e22;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.last-update {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  background: var(--card-bg);
+  padding: 8px 15px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
 }
 
 .loading-container {
@@ -209,6 +220,12 @@ header h1 {
   gap: 15px;
   font-size: 1rem;
   opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.feels-like {
+  font-size: 0.9rem;
+  opacity: 0.8;
 }
 
 .detailed-info {
@@ -261,7 +278,8 @@ header h1 {
 
 .hourly-forecast,
 .daily-forecast,
-.weather-map {
+.weather-map,
+.air-quality {
   background: var(--card-bg);
   backdrop-filter: blur(15px);
   border-radius: 20px;
@@ -273,7 +291,8 @@ header h1 {
 
 .hourly-forecast h3,
 .daily-forecast h3,
-.weather-map h3 {
+.weather-map h3,
+.air-quality h3 {
   margin-bottom: 20px;
   font-size: 1.3rem;
 }
@@ -306,7 +325,7 @@ header h1 {
   padding: 15px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
-  min-width: 80px;
+  min-width: 90px;
   transition: all 0.3s ease;
 }
 
@@ -334,6 +353,10 @@ header h1 {
 .hour-precipitation {
   font-size: 0.8rem;
   opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
 }
 
 .daily-list {
@@ -403,13 +426,80 @@ header h1 {
 .map-container {
   border-radius: 15px;
   overflow: hidden;
-  height: 300px;
+  height: 400px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
-#weatherMap {
+#windMap {
   height: 100%;
   width: 100%;
+}
+
+.wind-legend {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px 15px;
+  border-radius: 8px;
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.legend-title {
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  opacity: 0.9;
+}
+
+.legend-scale {
+  display: flex;
+  gap: 2px;
+}
+
+.legend-item {
+  padding: 4px 6px;
+  font-size: 0.7rem;
+  text-align: center;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.air-quality .aqi-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+}
+
+.aqi-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.aqi-card:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.aqi-value {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.aqi-label {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+.aqi-loading {
+  text-align: center;
+  padding: 20px;
+  opacity: 0.8;
 }
 
 .error-container {
@@ -530,6 +620,22 @@ footer {
   }
   
   .day-temps {
+    justify-content: center;
+  }
+  
+  .location-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .wind-legend {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin-top: 10px;
+  }
+  
+  .legend-scale {
     justify-content: center;
   }
 }

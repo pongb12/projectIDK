@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>WeatherView Pro - Dự báo thời tiết</title>
+  <title>WeatherView - Dự báo thời tiết</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -19,6 +19,7 @@
         <button id="currentLocationBtn" class="location-btn">
           <i class="wi wi-compass"></i> Vị trí hiện tại
         </button>
+        <div class="last-update" id="lastUpdate"></div>
       </div>
     </header>
 
@@ -47,6 +48,9 @@
               <div class="min-max-temp">
                 <span>Cao: <span id="maxTemp">--°</span></span>
                 <span>Thấp: <span id="minTemp">--°</span></span>
+              </div>
+              <div class="feels-like">
+                Cảm giác như: <span id="feelsLike">--°</span>
               </div>
             </div>
           </div>
@@ -82,6 +86,20 @@
                 <div class="info-value" id="pressureValue">-- hPa</div>
               </div>
             </div>
+            <div class="info-card">
+              <i class="wi wi-sunrise"></i>
+              <div class="info-content">
+                <div class="info-label">Tầm nhìn</div>
+                <div class="info-value" id="visibilityValue">-- km</div>
+              </div>
+            </div>
+            <div class="info-card">
+              <i class="wi wi-uv-index"></i>
+              <div class="info-content">
+                <div class="info-label">Chỉ số UV</div>
+                <div class="info-value" id="uvValue">--</div>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -98,9 +116,26 @@
         </div>
 
         <div class="weather-map">
-          <h3>Bản đồ thời tiết</h3>
+          <h3>Bản đồ gió</h3>
           <div id="mapContainer" class="map-container">
-            <div id="weatherMap"></div>
+            <div id="windMap"></div>
+            <div class="wind-legend">
+              <div class="legend-title">Tốc độ gió (km/h)</div>
+              <div class="legend-scale">
+                <div class="legend-item" style="background: #ffffcc">0-5</div>
+                <div class="legend-item" style="background: #a1dab4">5-15</div>
+                <div class="legend-item" style="background: #41b6c4">15-25</div>
+                <div class="legend-item" style="background: #2c7fb8">25-40</div>
+                <div class="legend-item" style="background: #253494">40+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="air-quality">
+          <h3>Chất lượng không khí</h3>
+          <div class="aqi-container" id="airQuality">
+            <div class="aqi-loading">Đang tải dữ liệu...</div>
           </div>
         </div>
       </div>
@@ -116,12 +151,11 @@
     </main>
 
     <footer>
-      <p>🌍 Dữ liệu từ Open-Meteo | Made with ❤️</p>
+      <p>🌍 Dữ liệu từ Open-Meteo & OpenWeatherMap | Made with ❤️</p>
     </footer>
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="script.js"></script>
 </body>
-
 </html>
